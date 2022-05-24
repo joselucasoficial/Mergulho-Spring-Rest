@@ -43,15 +43,21 @@ public class ClienteController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
+	// metodo de criação de obj PostMapping
 	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.CREATED)// retorna o codigo de status 201 CREATED
 	public Cliente adicionar(@RequestBody Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
 	
+	// metodo de atualização PutMapping
 	@PutMapping("/{clienteId}")
 	public ResponseEntity<Cliente> atualizar (@PathVariable Long clienteId,
 			@RequestBody Cliente cliente){
+		
+		/*if é para caso o caminho não for
+		* encontrado retornar o codigo de status 404 not folder
+		*/
 		if(!clienteRepository.existsById(clienteId)) {
 			return ResponseEntity.notFound().build();
 		}
