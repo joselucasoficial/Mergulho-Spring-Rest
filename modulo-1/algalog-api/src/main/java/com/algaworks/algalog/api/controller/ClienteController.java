@@ -77,8 +77,13 @@ public class ClienteController {
 		if(!clienteRepository.existsById(clienteId)) {
 			return ResponseEntity.notFound().build();
 		}
-		
+		/*caso seja encontrado 
+		 * sera deletado o obj em
+		 *  que for passado como caminho.
+		 */
 		clienteRepository.deleteById(clienteId);
+		
+		// retorna o codigo de status 204 no content
 		return ResponseEntity.noContent().build();
 	}
 }
