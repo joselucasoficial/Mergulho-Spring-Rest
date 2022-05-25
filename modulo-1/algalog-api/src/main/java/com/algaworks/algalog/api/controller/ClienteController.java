@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,14 +48,14 @@ public class ClienteController {
 	// metodo de criação de obj PostMapping
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)// retorna o codigo de status 201 CREATED
-	public Cliente adicionar(@RequestBody Cliente cliente) {
+	public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
 	
 	// metodo de atualização PutMapping
 	@PutMapping("/{clienteId}")
 	public ResponseEntity<Cliente> atualizar (@PathVariable Long clienteId,
-			@RequestBody Cliente cliente){
+			@Valid @RequestBody Cliente cliente){
 		
 		/*if é para caso o caminho não for
 		* encontrado retornar o codigo de status 404 not folder
